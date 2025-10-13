@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Birth Weight</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #a8c0ff, #3f2b96);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3f2b96;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #3f2b96;
+            outline: none;
+            box-shadow: 0 0 5px rgba(63,43,150,0.3);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            border: none;
+            background: #3f2b96;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5a3fd8;
+        }
+
+        /* Add slight fade-in effect */
+        form, h1 {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <form action="/predict" method="post">
+        <h1>Predict Birth Weight</h1>
+
+        <label>Gestation</label>
+        <input name="gestation" type="number" required>
+
+        <label>Parity</label>
+        <input name="parity" type="number" required>
+
+        <label>Age</label>
+        <input name="age" type="number" required>
+
+        <label>Height</label>
+        <input name="height" type="number" required>
+
+        <label>Weight</label>
+        <input name="weight" type="number" required>
+
+        <label>Smoke (0 = No, 1 = Yes)</label>
+        <input name="smoke" type="number" min="0" max="1" required>
+
+        <button type="submit">Predict Birth Weight</button>
+        
+        {% if prediction is not none %}
+        <div style="margin-top: 20px; padding: 15px; background: #e8f5e8; border-radius: 8px; text-align: center;">
+            <h3 style="color: #2d5a2d; margin: 0;">Predicted Birth Weight: {{prediction}} kg</h3>
+        </div>
+        {% endif %}
+    </form>
+</body>
+</html>
