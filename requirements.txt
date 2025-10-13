@@ -3,5 +3,4 @@ numpy
 pandas
 scikit-learn
 gunicorn
-pywin32==306
 pytz==2024.1
